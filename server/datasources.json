@@ -1,0 +1,13 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "pretzeldb": {
+    "password": "test123",
+    "name": "pretzeldb",
+    "connector": "mysql",
+    "user": "root",
+    "database": "pretzeldb"
+  }
+}
