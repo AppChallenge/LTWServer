@@ -1,0 +1,28 @@
+{
+  "name": "brownbag-registration",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "role": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    },
+    "boardBrownbag": {
+      "type": "belongsTo",
+      "model": "board-brownbag",
+      "foreignKey": "brownbagId"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

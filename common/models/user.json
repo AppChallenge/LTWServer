@@ -1,0 +1,27 @@
+{
+  "name": "user",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "role": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "boardBrownbags": {
+      "type": "hasMany",
+      "model": "board-brownbag",
+      "foreignKey": "brownbagId",
+      "through": "brownbag-registration"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

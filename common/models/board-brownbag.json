@@ -1,5 +1,5 @@
 {
-  "name": "board_brownbag",
+  "name": "board-brownbag",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -26,7 +26,14 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "users": {
+      "type": "hasMany",
+      "model": "user",
+      "foreignKey": "userId",
+      "through": "brownbag-registration"
+    }
+  },
   "acls": [],
   "methods": []
 }
