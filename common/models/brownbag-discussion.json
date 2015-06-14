@@ -1,4 +1,4 @@
-  {
+{
   "name": "brownbag-discussion",
   "base": "PersistedModel",
   "idInjection": true,
