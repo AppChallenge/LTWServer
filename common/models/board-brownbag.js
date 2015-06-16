@@ -12,5 +12,15 @@ module.exports = function(BoardBrownbag) {
 		http: {path:'/list-brownbags', verb: 'get'}
 	});
 
-	
+	BoardBrownbag.getBrownbagById = function(id, cb){
+		BoardBrownbag.findById(id, [], cb);
+	};
+
+	BoardBrownbag.remoteMethod('getBrownbagById', {
+		accepts: [
+			{arg: 'id', type: 'number'}
+		],
+		returns: {arg: 'brownbag', type: 'object'},
+		http: {path:'/get-brownbag-by-id', verb: 'get'}
+	});
 };
