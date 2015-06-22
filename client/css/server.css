@@ -1,7 +1,8 @@
-#send_btn {
-	cursor: pointer;
-}
-
 .mhide{
 	display: none;
+}
+
+#login_form{
+	position: relative;
+	padding-top: 30px;
 }

@@ -17,8 +17,6 @@
 		});
 	}
 
-	
-
 	function loginSucess(data){
 		if (CAN_USE_LOCALSTORAGE) {
 			localStorage.accessToken = data.id;

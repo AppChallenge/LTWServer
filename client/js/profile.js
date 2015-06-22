@@ -21,7 +21,4 @@
 		console.log("sendFailed");
 	}
 
-
-
-
 })();
