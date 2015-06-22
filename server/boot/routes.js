@@ -1,28 +1,22 @@
 module.exports = function(app) {
   var router = app.loopback.Router();
 
-  router.get('/', function(req, res) {
-    res.render('index', {
-      loginFailed: false
-    });
-  });
+  // router.get('/', function(req, res) {
+  //   res.render('index', {
+  //     loginFailed: false
+  //   });
+  // });
 
-  router.post('/sendNotification', function(req, res){
+  router.post('/send_notification', function(req, res){
     app.sendNotification(function(err, result){
-      res.render('profile', {
-        username: app.models.AccessToken,
-        result: result
-      });
+      res.send(result);
     });
-    // res.render('profile', {
-    //     username: app.models.AccessToken,
-    //     result: "still sending"
-    //   });
+    
   });
 
-  router.get('/profile', function(req, res) {
-    res.render('profile');
-  });
+  // router.get('/profile', function(req, res) {
+  //   res.render('profile');
+  // });
 
   router.post('/profile', function(req, res) {
     var email = req.body.email;
@@ -33,19 +27,20 @@ module.exports = function(app) {
       password: password
     }, 'user', function(err, token) {
       if (err)
-        return res.render('index', {
+        return res.send({
           email: email,
           password: password,
           loginFailed: true
         });
 
       token = token.toJSON();
-
-      res.render('profile', {
+      res.send({
+        loginFailed: false,
         username: token.user.username,
         accessToken: token.id,
         result: ""
       });
+
     });
   });
 
@@ -54,7 +49,9 @@ module.exports = function(app) {
     var token = new AccessToken({id: req.query.access_token});
     token.destroy();
 
-    res.redirect('/');
+    res.send({
+      success: true
+    });
   });
 
   app.use(router);

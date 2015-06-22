@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bootstrap 101 Template</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
     <!-- Bootstrap -->
-
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,12 +17,19 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Please login :></h1>
 
-    <a id="login_btn">Login</a>
-    <div class="mhide" id="login_fail_txt">Login failed.</div>
+    <div id="login_form">
+      <input type="text" id="email" name="email" value="qq@qq.com" placeholder="Email"><br>
+      <input type="password" id="password" name="password" value="123" placeholder="Password"><br>
+      <input id="login_btn" type="button" value="Login">
+    </div>
+    
+    <div class="mhide" style="color:red">Login failed, please try again</div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/index.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   </body>

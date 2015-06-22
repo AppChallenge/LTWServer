@@ -1,3 +1,7 @@
 #send_btn {
-	cursor: pointer;;
+	cursor: pointer;
+}
+
+.mhide{
+	display: none;
 }

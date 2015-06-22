@@ -4,7 +4,24 @@
 	}
 
 	function sendNotification(){
-		window.location.href = "/sendNotification";
+		$.ajax({
+	        url: '/send_notification',
+	        type: 'POST',
+	        dataType: 'json',
+	        success: sendSuccessCallback,
+	        error: sendFailCallback
+	    });
 	}
+
+	function sendSuccessCallback(data){
+		window.location.href = data.url;
+	}
+
+	function sendFailCallback(jqXHR, textStatus, errorThrown){
+		console.log("sendFailed");
+	}
+
+
+
 
 })();
