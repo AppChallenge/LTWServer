@@ -40,20 +40,22 @@ app.start = function() {
   });
 };
 
-app.sendNotification = function(cb){
-  
-  gt.connect(function (cb) {
-      pushMessageToApp(cb);
-  });
+app.sendNotification = function(data, cb){
+  gt.connect(connectCallback(data, cb));
 }
 
-function pushMessageToApp() {
+function connectCallback(data, cb){
+  pushMessageToApp(data, cb);
+}
+
+function pushMessageToApp(data, cb) {
     // var taskGroupName = 'test';
     var taskGroupName = null;
 
     //消息类型 : 状态栏通知 点击通知启动应用
     var template = NotificationTemplateDemo();
-
+    template.title = data.title;
+    template.text = data.text
     //个推信息体
     //基于应用消息体
     var message = new AppMessage({
@@ -67,9 +69,7 @@ function pushMessageToApp() {
 //        speed: 1
     });
 
-    gt.pushMessageToApp(message, taskGroupName, function (err, res) {
-        console.log(res);
-    });
+    gt.pushMessageToApp(message, taskGroupName, cb);
 }
 
 function NotificationTemplateDemo() {

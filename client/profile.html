@@ -8,6 +8,7 @@
     <title>Bootstrap 101 Template</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" type="text/css" href="css/server.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,23 +55,83 @@
           
       </div>
       <div class="row">
-        <table id="brownbags" class="table table-striped">
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Location</th>
-            <th>Status</th>
-          </tr>
-          
-        </table>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_brownbag_model">New Brownbag</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table id="brownbags" class="table table-striped">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Location</th>
+              <th>Status</th>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="new_brownbag_model" tabindex="-1" role="dialog" aria-labelledby="new_brownbag_model_label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">New Brownbag</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" placeholder="Title">
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" rows="3" id="description"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input class="form-control" id="location" placeholder="Location">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Start Time</label>
+                <div class='input-group date' id='starttimepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">End Time</label>
+                <div class='input-group date' id='endtimepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="save_as_draft">Save as draft</button>
+            <button type="button" class="btn btn-primary" id="create">Create</button>
+          </div>
+        </div>
       </div>
     </div>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/profile.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   </body>

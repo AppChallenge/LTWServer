@@ -1,22 +1,16 @@
 module.exports = function(app) {
   var router = app.loopback.Router();
 
-  // router.get('/', function(req, res) {
-  //   res.render('index', {
-  //     loginFailed: false
-  //   });
-  // });
-
   router.post('/send_notification', function(req, res){
-    app.sendNotification(function(err, result){
+    console.log(req);
+    app.sendNotification(req.body, function(err, result){
+      if(err){
+        console.log(err);
+      }
       res.send(result);
     });
     
   });
-
-  // router.get('/profile', function(req, res) {
-  //   res.render('profile');
-  // });
 
   router.post('/profile', function(req, res) {
     var email = req.body.email;
