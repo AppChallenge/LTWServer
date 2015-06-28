@@ -14,6 +14,7 @@ var MASTERSECRET = 'fdkqdoXBuW94hkl7rcNWw9';
 var app = module.exports = loopback();
 var gt = new GeTui(HOST, APPKEY, MASTERSECRET);
 
+
 app.middleware('initial', bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); // LoopBack comes with EJS out-of-box
@@ -46,38 +47,45 @@ app.sendNotification = function(cb){
   });
 }
 
-function pushMessageToApp(cb){
-  // var taskGroupName = 'test';
+function pushMessageToApp() {
+    // var taskGroupName = 'test';
     var taskGroupName = null;
+
     //消息类型 : 状态栏通知 点击通知启动应用
     var template = NotificationTemplateDemo();
+
     //个推信息体
     //基于应用消息体
     var message = new AppMessage({
         isOffline: true,
         offlineExpireTime: 3600 * 12 * 1000,
         data: template,
-        appIdList: [APPID],
-        phoneTypeList: ['ANDROID'],
-        provinceList: ['浙江','北京','河南'],
-        tagList: ['tag1','tag2'],
-        speed: 40
+        appIdList: [APPID]
+//        phoneTypeList: ['IOS'],
+//        provinceList: ['浙江'],
+        //tagList: ['阿百川']
+//        speed: 1
     });
-    gt.pushMessageToApp(message, taskGroupName, cb);
+
+    gt.pushMessageToApp(message, taskGroupName, function (err, res) {
+        console.log(res);
+    });
 }
 
 function NotificationTemplateDemo() {
     var template = new NotificationTemplate({
         appId: APPID,
         appKey: APPKEY,
-        title: '个推',
-        text: '个推最新版点击下载',
-        logo: 'http://wwww.igetui.com/logo.png',
+        title: 'New Brownbag - The Fantastic World of Mobile App Development',
+        text: 'Test from pretzel server.',
+        logo: 'http://dev.igetui.com/images/ic_launcher.png',
         isRing: true,
         isVibrate: true,
         isClearable: false,
         transmissionType: 2,
-        transmissionContent: '测试离线'
+        transmissionContent: {
+          "id": "1"
+        }
     });
     // iOS推送需要设置的pushInfo字段
     //template.setPushInfo({actionLocKey: 'a', badge: 4, message: 'b', sound: 'com.gexin.ios.silence', payload: 'DDDD', locKey: '近日。',

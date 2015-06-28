@@ -6,3 +6,13 @@
 	position: relative;
 	padding-top: 30px;
 }
+
+#header{
+	padding-top: 10px;
+	padding-bottom: 30px;
+}
+
+#navigation{
+	margin-top: 20px;
+	margin-right: 0px;	
+}

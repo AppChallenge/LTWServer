@@ -21,7 +21,9 @@
 		if (CAN_USE_LOCALSTORAGE) {
 			localStorage.accessToken = data.id;
 			localStorage.userId = data.userId;
-		};
+		}else{
+			
+		}
 		window.location.href = "profile.html";
 	}
 
