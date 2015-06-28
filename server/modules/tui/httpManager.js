@@ -21,6 +21,13 @@ var httpManager = {
         var tries = MAX_HTTP_RETRIES;
         attempt();
         function attempt() {
+            console.log({
+                uri: host,
+                body: postData,
+                json: true,
+                method: 'post',
+                timeout: TIMEOUT
+            });
             request(
                 {
                     uri: host,

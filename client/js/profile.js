@@ -10,6 +10,11 @@
 		$("#endtimepicker").datetimepicker();
 		$("#save_as_draft").click(saveAsDraft);
 		$("#create").click(createBrownbag);
+		$(".editbb_btn").click(showBrownbagDetail);
+	}
+
+	function showBrownbagDetail(eventObj){
+		console.log(eventObj);
 	}
 
 	function saveAsDraft(){
@@ -46,8 +51,9 @@
 	}
 
 	function refreshTable(){
-		$(".bb_item").remove();
-		showBrownbags();
+		$("#brownbags_table").bootstrapTable('refresh', {
+            url: '/api/board-brownbags?access_token=' + ACCESS_TOKEN
+        });
 	}
 
 	function createBrownbag(){
@@ -85,13 +91,73 @@
 	}
 
 	function showBrownbags(){
-		$.ajax({
-			url: '/api/board-brownbags?access_token=' + ACCESS_TOKEN,
-			type: 'GET',
-			dataType: 'json',
-			success: getBrownbagSuccessCallback,
-	        error: getBrownbagFailCallback
-		});
+		// $.ajax({
+		// 	url: '/api/board-brownbags?access_token=' + ACCESS_TOKEN,
+		// 	type: 'GET',
+		// 	dataType: 'json',
+		// 	success: getBrownbagSuccessCallback,
+	 //        error: getBrownbagFailCallback
+		// });
+
+		$('#brownbags_table').bootstrapTable({
+            method: 'get',
+            url: '/api/board-brownbags?access_token=' + ACCESS_TOKEN,
+            cache: false,
+            height: 500,
+            striped: true,
+            pagination: true,
+            pageSize: 50,
+            pageList: [10, 25, 50, 100, 200],
+            search: true,
+            showColumns: true,
+            showRefresh: true,
+            minimumCountColumns: 2,
+            clickToSelect: true,
+            columns: [{
+                field: 'id',
+                title: 'ID',
+                align: 'right',
+                valign: 'bottom',
+                sortable: true
+            }, {
+                field: 'title',
+                title: 'Title',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+            }, {
+                field: 'starttime',
+                title: 'Start Time',
+                align: 'left',
+                valign: 'top',
+                sortable: true,
+            }, {
+                field: 'endtime',
+                title: 'End Time',
+                align: 'left',
+                valign: 'top',
+                sortable: true,
+            }, {
+                field: 'location',
+                title: 'Location',
+                align: 'left',
+                valign: 'top',
+                sortable: true,
+            }, {
+                field: 'status',
+                title: 'Status',
+                align: 'left',
+                valign: 'top',
+            }, {
+                field: 'operate',
+                title: 'Item Operate',
+                align: 'center',
+                valign: 'middle',
+                clickToSelect: false,
+                formatter: operateFormatter,
+                events: operateEvents
+            }]
+        });
 	}
 
 	function showNewBrownbagDialog(){
@@ -115,14 +181,16 @@
 			var location = brownbag.location;
 			var description = brownbag.description;
 			$("#brownbags").append("<tr class='bb_item'>" 
-				+ "<td>" + id.toString() +"</td>" 
+				+ "<td class='bb_id'>" + id.toString() +"</td>" 
 				+ "<td>" + title + "</td>" 
 				+ "<td>" + starttime + "</td>"
 				+ "<td>" + endtime + "</td>"
 				+ "<td>" + location + "</td>"
 				+ "<td>" + status + "</td>"
+				+ "<td><button type='button' class='btn btn-primary btn-small editbb_btn'>Edit</button></td>"
 				+ "</tr>");
 		};
+		$(".editbb_btn").click(showBrownbagDetail);
 	}
 
 	function getBrownbagFailCallback(jqXHR, textStatus, errorThrown){
@@ -165,5 +233,54 @@
 			return false;
 		}
 	}
+
+	function operateFormatter(value, row, index) {
+        return [
+            '<a class="like" href="javascript:void(0)" title="Like">',
+                '<i class="glyphicon glyphicon-heart"></i>',
+            '</a>',
+            '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+                '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>',
+            '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    window.operateEvents = {
+        'click .like': function (e, value, row, index) {
+            alert('You click like icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .edit': function (e, value, row, index) {
+            alert('You click edit icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+            showBrownbagDetail(row);
+        },
+        'click .remove': function (e, value, row, index) {
+            alert('You click remove icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+            removeBrownbag(row.id);
+        }
+    };
+
+    function removeBrownbag(id){
+    	$.ajax({
+	        url: '/api/board-brownbags/'+id.toString()+"?access_token=" + ACCESS_TOKEN,
+	        type: 'DELETE',
+	        dataType: 'json',
+	        success: removeBrownbagSuccessCallback,
+	        error: removeBrownbagFailCallback
+	    })
+    }
+
+    function removeBrownbagSuccessCallback(data){
+    	refreshTable();
+    }
+
+    function removeBrownbagFailCallback(){
+    	console.log("remove fail");
+    }
 
 })();
