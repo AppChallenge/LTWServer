@@ -32,6 +32,11 @@
       "model": "user",
       "foreignKey": "userId",
       "through": "brownbag-registration"
+    },
+    "brownbag-registrations": {
+      "type": "hasMany",
+      "model": "brownbag-registration",
+      "foreignKey": "brownbagId"
     }
   },
   "acls": [
