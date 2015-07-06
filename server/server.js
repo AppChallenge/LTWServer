@@ -55,7 +55,8 @@ function pushMessageToApp(data, cb) {
     //消息类型 : 状态栏通知 点击通知启动应用
     var template = NotificationTemplateDemo();
     template.title = data.title;
-    template.text = data.text
+    template.text = data.text;
+    template.logo = websitePath + '/image/appicon_192.png';
     //个推信息体
     //基于应用消息体
     var message = new AppMessage({
@@ -63,10 +64,6 @@ function pushMessageToApp(data, cb) {
         offlineExpireTime: 3600 * 12 * 1000,
         data: template,
         appIdList: [APPID]
-//        phoneTypeList: ['IOS'],
-//        provinceList: ['浙江'],
-        //tagList: ['阿百川']
-//        speed: 1
     });
 
     gt.pushMessageToApp(message, taskGroupName, cb);
@@ -78,7 +75,7 @@ function NotificationTemplateDemo() {
         appKey: APPKEY,
         title: 'New Brownbag - The Fantastic World of Mobile App Development',
         text: 'Test from pretzel server.',
-        logo: 'http://dev.igetui.com/images/ic_launcher.png',
+        logo: "",
         isRing: true,
         isVibrate: true,
         isClearable: false,
@@ -99,7 +96,7 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
 
-  app.dataSources.pretzeldb.autoupdate(['board-brownbag', 'board', 'brownbag-discussion', 'brownbag-registration', 'user'], function(err){
+  app.dataSources.pretzeldb.autoupdate(['board-brownbag', 'board', 'brownbag-discussion', 'brownbag-registration', 'user', 'board-general', 'general-discussion'], function(err){
   	console.log(err);
   });
 

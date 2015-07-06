@@ -25,6 +25,16 @@
       "type": "hasMany",
       "model": "brownbag-registration",
       "foreignKey": "userId"
+    },
+    "general-discussions": {
+      "type": "hasMany",
+      "model": "general-discussion",
+      "foreignKey": "publisher_id"
+    },
+    "general_posts": {
+      "type": "hasMany",
+      "model": "board-general",
+      "foreignKey": "publisher_id"
     }
   },
   "acls": [
@@ -46,6 +56,19 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "findById"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findOne"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
     }
   ],
   "methods": []

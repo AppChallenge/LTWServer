@@ -1,0 +1,37 @@
+{
+  "name": "board-general",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "board_id": {
+      "type": "number"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "publish_date": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "general-discussions": {
+      "type": "hasMany",
+      "model": "general-discussion",
+      "foreignKey": "general_id"
+    },
+    "publisher": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "publisher_id"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

@@ -1,0 +1,31 @@
+{
+  "name": "general-discussion",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "postdate": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "board-general": {
+      "type": "belongsTo",
+      "model": "board-general",
+      "foreignKey": "topic_id"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "publisher_id"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

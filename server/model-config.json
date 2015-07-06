@@ -52,5 +52,13 @@
   "brownbag-discussion": {
     "dataSource": "pretzeldb",
     "public": true
+  },
+  "board-general": {
+    "dataSource": "pretzeldb",
+    "public": true
+  },
+  "general-discussion": {
+    "dataSource": "pretzeldb",
+    "public": true
   }
 }
