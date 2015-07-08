@@ -6,6 +6,13 @@ module.exports = function(BrownbagDiscussion) {// register brownbag
 			},
 			where: {
 				brownbagId: brownbagId
+			},
+			include: {
+				relation: "user",
+				scope: {
+					fields: ['id', 'email', 'username']
+				}
+				
 			}
 		}, 	
 		cb);

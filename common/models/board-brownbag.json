@@ -37,6 +37,11 @@
       "type": "hasMany",
       "model": "brownbag-registration",
       "foreignKey": "brownbagId"
+    },
+    "tags": {
+      "type": "hasMany",
+      "model": "tag",
+      "foreignKey": "brownbagId"
     }
   },
   "acls": [
@@ -142,6 +147,12 @@
       "principalId": "$everyone",
       "permission": "DENY",
       "property": "destroyAll"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
     }
   ],
   "methods": []

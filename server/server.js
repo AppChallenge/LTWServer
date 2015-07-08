@@ -96,7 +96,7 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
 
-  app.dataSources.pretzeldb.autoupdate(['board-brownbag', 'board', 'brownbag-discussion', 'brownbag-registration', 'user', 'board-general', 'general-discussion'], function(err){
+  app.dataSources.pretzeldb.autoupdate(['tag', 'board-brownbag', 'board', 'brownbag-discussion', 'brownbag-registration', 'user', 'board-general', 'general-discussion'], function(err){
   	console.log(err);
   });
 
