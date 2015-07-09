@@ -46,7 +46,7 @@ module.exports = function(BoardBrownbag) {
 			include: {
 			    relation: 'brownbag-registrations',
 			    scope: { // further filter the brownbag-registrations object
-			    	where: {role: {inq: ["speaker", "register"]}},
+			    	where: {role: {inq: ["speaker", "audience"]}},
 			    	include: { // include orders for the owner
 			    		relation: 'user', 
 			    		scope: {
