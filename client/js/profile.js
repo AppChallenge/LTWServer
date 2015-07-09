@@ -200,18 +200,23 @@
 	function sendNotification(data){
 		var title = data.title;
 		var description = data.description;
+		var id = data.id;
 		
 		$.ajax({
 	        url: '/send_notification',
 	        type: 'POST',
 	        dataType: 'json',
 	        data: {
+	        	"id": id,
 	        	"title": title,
 	        	"text": description
 	        },
+
 	        success: sendSuccessCallback,
 	        error: sendFailCallback
 	    });
+
+
 	}
 
 	function sendSuccessCallback(result){

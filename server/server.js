@@ -56,6 +56,7 @@ function pushMessageToApp(data, cb) {
     var template = NotificationTemplateDemo();
     template.title = data.title;
     template.text = data.text;
+    template.transmissionContent = {"id": data.id}
     template.logo = websitePath + '/image/appicon_192.png';
     //个推信息体
     //基于应用消息体
