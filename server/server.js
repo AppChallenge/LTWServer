@@ -80,7 +80,7 @@ function NotificationTemplateDemo() {
         isRing: true,
         isVibrate: true,
         isClearable: false,
-        transmissionType: 2,
+        transmissionType: 1,
         transmissionContent: {
           "id": "1"
         }
