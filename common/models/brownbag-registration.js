@@ -23,7 +23,7 @@ module.exports = function(BrownbagRegistration) {
 	// register brownbag
 	BrownbagRegistration.registerBrownbag = function(brownbagId, userId, cb){
 		BrownbagRegistration.create({
-			"role": "register",
+			"role": "audience",
 			"userId": userId,
 			"brownbagId": brownbagId
 		}, 	
