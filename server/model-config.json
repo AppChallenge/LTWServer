@@ -60,9 +60,5 @@
   "general-discussion": {
     "dataSource": "pretzeldb",
     "public": true
-  },
-  "tag": {
-    "dataSource": "pretzeldb",
-    "public": true
   }
 }

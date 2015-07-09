@@ -23,6 +23,9 @@
     },
     "status": {
       "type": "string"
+    },
+    "tag": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -36,11 +39,6 @@
     "brownbag-registrations": {
       "type": "hasMany",
       "model": "brownbag-registration",
-      "foreignKey": "brownbagId"
-    },
-    "tags": {
-      "type": "hasMany",
-      "model": "tag",
       "foreignKey": "brownbagId"
     }
   },
@@ -153,6 +151,33 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "addTag"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findByTag"
     }
   ],
   "methods": []
